@@ -1,0 +1,15 @@
+module ActiveAdmin
+  module Views
+    class TourIndex < ActiveAdmin::Component
+
+      def build(page_presenter, collection)
+        # ...
+      end
+
+      def self.index_name
+        "TourIndex"
+      end
+
+    end
+  end
+end

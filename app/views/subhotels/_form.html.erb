@@ -1,0 +1,15 @@
+<h3>Create a subhotel</h3>
+
+<%= form_for [ @hotel, @subhotel ] do |f| %>
+  <p>
+    <%= f.label :hotel_date %><br/>
+    <%= f.date_field :hotel_date %>
+  </p>
+  <p>
+    <%= f.label :sub_note %><br/>
+    <%= f.text_field :sub_note %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

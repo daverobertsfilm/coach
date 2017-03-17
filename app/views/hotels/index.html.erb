@@ -1,0 +1,11 @@
+<h1>All hotels</h1>
+
+<ul id="hotels">
+  <% @hotels.each do |hotel| %>
+    <li>
+      <%= link_to hotel.hotel_title, hotel_path(hotel), class: 'article_title' %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create a New hotel", new_hotel_path, class: "new_hotel" %>

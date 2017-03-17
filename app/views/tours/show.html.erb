@@ -1,0 +1,9 @@
+<h1><%= @tour.title %></h1>
+<p><%= @tour.body %></p>
+
+
+<h3>Subtours</h3>
+<%= render partial: 'tours/subtour', collection: @tour.subtours.reverse %>
+<%= link_to "<< Back to Tours List", tours_path %>
+
+<%= render partial: 'subtours/form' %>

@@ -1,0 +1,4 @@
+insert_tag active_admin_form_for hotel do |f|
+  inputs :hotel_date, :sun_note
+  actions
+end

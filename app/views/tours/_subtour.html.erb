@@ -1,0 +1,9 @@
+<div>
+
+  <% @tour.subtours.each do |subtour| %>
+    <li>
+      <%= link_to subtour.departure_date, tour_subtour_path(subtour), class: 'article_title' %>
+    </li>
+  <% end %>
+  <p>Sub note <%= subtour.sub_note %></p>
+</div>

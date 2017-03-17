@@ -1,0 +1,15 @@
+<h3>Create a Subtour</h3>
+
+<%= form_for [ @tour, @subtour ] do |f| %>
+  <p>
+    <%= f.label :departure_date %><br/>
+    <%= f.date_field :departure_date %>
+  </p>
+  <p>
+    <%= f.label :sub_note %><br/>
+    <%= f.text_field :sub_note %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

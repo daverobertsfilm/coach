@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: subtours
+#
+#  id             :integer          not null, primary key
+#  departure_date :date
+#  sub_note       :text
+#  tour_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Departure_Date: 2017-03-13
+  Tour: one
+
+two:
+  Departure_Date: 2017-03-13
+  Tour: two
