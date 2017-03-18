@@ -11,5 +11,6 @@
 
 class Hotel < ApplicationRecord
   has_many :subhotels
+  belongs_to :subtour
   accepts_nested_attributes_for :subhotels
 end

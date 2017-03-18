@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315205243) do
+ActiveRecord::Schema.define(version: 20170318184417) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170315205243) do
     t.text     "hotel_body"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "subtour_id"
+    t.index ["subtour_id"], name: "index_hotels_on_subtour_id"
   end
 
   create_table "subhotels", force: :cascade do |t|
@@ -78,7 +80,9 @@ ActiveRecord::Schema.define(version: 20170315205243) do
     t.integer  "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "subtour_id"
     t.index ["hotel_id"], name: "index_subhotels_on_hotel_id"
+    t.index ["subtour_id"], name: "index_subhotels_on_subtour_id"
   end
 
   create_table "subtours", force: :cascade do |t|
@@ -87,6 +91,10 @@ ActiveRecord::Schema.define(version: 20170315205243) do
     t.integer  "tour_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "hotel_id"
+    t.integer  "subhotel_id"
+    t.index ["hotel_id"], name: "index_subtours_on_hotel_id"
+    t.index ["subhotel_id"], name: "index_subtours_on_subhotel_id"
     t.index ["tour_id"], name: "index_subtours_on_tour_id"
   end
 

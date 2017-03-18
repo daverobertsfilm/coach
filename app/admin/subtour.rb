@@ -1,18 +1,23 @@
 ActiveAdmin.register Subtour
 
 ActiveAdmin.register Subtour do
-  permit_params :departure_date, :sub_note, :tour_id
+  permit_params :departure_date, :sub_note, :tour_id, :hotel_id, :subhotel_id
 end
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+ActiveAdmin.register Subtour do
+
+  form decorate: true do |f|
+    tabs do
+      tab 'Details' do
+    f.inputs 'Details' do
+      f.input :departure_date
+      f.input :sub_note
+      f.input :tour_id
+      f.input :hotel_id, as: :select, collection: Hotel.all
+      f.input :subhotel_id, as: :select, collection: Subhotel.all
+    end
+    end
+    end
+    f.actions
+    end
+end
