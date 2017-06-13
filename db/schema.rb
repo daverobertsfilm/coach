@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318184417) do
+ActiveRecord::Schema.define(version: 20170612195208) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -65,13 +65,31 @@ ActiveRecord::Schema.define(version: 20170318184417) do
     t.datetime "updated_at"
   end
 
+  create_table "hotel_bookings", force: :cascade do |t|
+    t.integer  "hotel_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "occupied_rooms"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["hotel_id"], name: "index_hotel_bookings_on_hotel_id"
+  end
+
+  create_table "hotel_tours", force: :cascade do |t|
+    t.integer  "hotel_id"
+    t.integer  "tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hotel_id"], name: "index_hotel_tours_on_hotel_id"
+    t.index ["tour_id"], name: "index_hotel_tours_on_tour_id"
+  end
+
   create_table "hotels", force: :cascade do |t|
     t.string   "hotel_title"
     t.text     "hotel_body"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "subtour_id"
-    t.index ["subtour_id"], name: "index_hotels_on_subtour_id"
+    t.integer  "rooms"
   end
 
   create_table "subhotels", force: :cascade do |t|
@@ -96,6 +114,15 @@ ActiveRecord::Schema.define(version: 20170318184417) do
     t.index ["hotel_id"], name: "index_subtours_on_hotel_id"
     t.index ["subhotel_id"], name: "index_subtours_on_subhotel_id"
     t.index ["tour_id"], name: "index_subtours_on_tour_id"
+  end
+
+  create_table "tour_bookings", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_tour_bookings_on_tour_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -129,6 +156,24 @@ ActiveRecord::Schema.define(version: 20170318184417) do
     t.boolean  "tour_insurance_available",       default: true
     t.boolean  "tour_insurance_inclusive",       default: false
     t.boolean  "tour_insurance_vat_applies",     default: true
+  end
+
+  create_table "vehical_bookings", force: :cascade do |t|
+    t.integer  "vehical_id"
+    t.date     "start_data"
+    t.date     "end_date"
+    t.integer  "occupied_seats"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["vehical_id"], name: "index_vehical_bookings_on_vehical_id"
+  end
+
+  create_table "vehicals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "vehicle_type"
+    t.integer  "seats"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

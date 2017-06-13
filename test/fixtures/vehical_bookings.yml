@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Vehical: one
+  start_data: 
+  end_date: 2017-06-13
+  occupied_seats: 1
+
+two:
+  Vehical: two
+  start_data: 
+  end_date: 2017-06-13
+  occupied_seats: 1
