@@ -37,6 +37,8 @@
 
 class Tour < ApplicationRecord
   has_many :subtours
+  has_many :hotel_tours
   has_many :hotels, through: :hotel_tours
   accepts_nested_attributes_for :subtours
+
 end

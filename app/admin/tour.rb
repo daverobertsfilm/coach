@@ -25,9 +25,9 @@ ActiveAdmin.register Tour do
 end
 
 ActiveAdmin.register Tour do
-  sidebar "Project Details", only: [:show, :edit, :update, :destroy] do
+  sidebar "Tour Details", only: [:show, :edit, :update, :destroy] do
     ul do
-      li link_to "Subtours",    admin_tour_subtours_path(resource)
+      #li link_to "Availabel Hotels", admin_tour_hotels_path(resource)
     end
   end
 end
@@ -81,11 +81,6 @@ ActiveAdmin.register Tour do
           f.input :tour_insurance_vat_applies
         end
       end
-      tab 'Hotel' do
-        f.inputs 'Hotel' do
-          f.input :hotel_tours, as: :check_boxes, :collection => User.all.map{ |tech|  [tech.surname, tech.id] }
-        end
-      end
     end
     f.actions
   end
@@ -132,6 +127,12 @@ ActiveAdmin.register Tour do
       panel "Subtours" do
         tour.subtours.each do |subtour|
           li link_to "#{subtour.departure_date}", admin_tour_subtour_path(tour, subtour)
+        end
+      end
+
+      panel "Available Hotels" do
+        tour.hotels.each do |hotel|
+          li link_to "#{hotel.hotel_title}", admin_hotel_path(hotel)
         end
       end
     end

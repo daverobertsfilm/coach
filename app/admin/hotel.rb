@@ -1,11 +1,12 @@
 ActiveAdmin.register Hotel do
+  #belongs_to :tour
   permit_params :hotel_title, :hotel_body
 end
 
 ActiveAdmin.register Hotel do
-  sidebar "Project Details", only: [:show, :edit, :update, :destroy] do
+  sidebar "Hotel Details", only: [:show, :edit, :update, :destroy] do
     ul do
-      li link_to "Subhotels",    admin_hotel_subhotels_path(resource)
+      #li link_to "Hotel Booking",    admin_hotel_hotel_booking_path(resource)
     end
   end
 end
@@ -38,9 +39,9 @@ ActiveAdmin.register Hotel do
           simple_format hotel.hotel_body
         end
         end
-      panel "Subhotels" do
-        hotel.subhotels.each do |subhotel|
-            li link_to "#{subhotel.hotel_date}", admin_hotel_subhotel_path(hotel, subhotel)
+      panel "Hotel Booking" do
+        hotel.hotel_bookings.each do |hotel_booking|
+            li link_to "#{hotel_booking.start_date}", admin_hotel_booking_path(hotel_booking)
       end
     end
     end
