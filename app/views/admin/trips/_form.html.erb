@@ -1,0 +1,18 @@
+<%= semantic_form_for [:admin, @trip], builder: ActiveAdmin::FormBuilder do |f| %>
+  <%=  f.inputs "Details" do %>
+    <%=  f.input :tour_booking_id, :label => 'Tour Booking', :as => :select, :collection => TourBooking.all.map{|t| ["#{t.tour.title} - #{t.start_date}", t.id]} %>
+    <div id="trip-details">
+    </div>
+    <%=  f.actions %>
+  <% end %>
+<% end %>
+<script type="text/javascript">
+  $(function(argument) {
+    $('#trip_tour_booking_id').change(function() {
+      $.get('/admin/trips/booking_data?tour_booking_id=' + $(this).val(), function(data) {
+        console.log(data);
+      })
+    });
+  });
+</script>
+

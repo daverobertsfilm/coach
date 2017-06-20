@@ -1,0 +1,30 @@
+<% if @hotel_booking.blank? %>
+  <div>
+    Hotel is not availabel on given date
+  </div>
+<% elsif @vehicle_booking.blank? %>
+  <div>
+    Vehicle is not availabel on given date
+  </div>
+<% elsif @trips.blank? %>
+  <div>
+    <p>No Trip so far create first trip.</p>
+    <p>Date: @hotel_booking.first.start_data</p>
+    <p>Hotel Name: <%= @hotel_booking.first.hotel.hotel_title %></p>
+    <p>Vehicle Name: <%= @vehicle_booking.first.vehicle.name %></p>
+    <p>Availabe seats: <%= [@hotel_booking.first.occupied_rooms, @vehicle_booking.first.occupied_seats].min %></p>
+    <%= hidden_field(:trip, :hotel_booking_id, :value => @hotel_booking.first.id) %>
+    <%= hidden_field(:trip, :vehicle_booking_id, :value => @vehicle_booking.first.id) %>
+    <%= text_field_tag 'trip[seats]' %>
+  </div>
+<% else %>
+  <div>
+    <p>Date: @hotel_booking.first.start_data</p>
+    <p>Hotel Name: <%= @hotel_booking.first.hotel.hotel_title %></p>
+    <p>Vehicle Name: <%= @vehicle_booking.first.vehicle.name %></p>
+    <p>Availabe seats: <%= [@hotel_booking.first.occupied_rooms, @vehicle_booking.first.occupied_seats].min - @trips.sum(:seats)%></p>
+    <%= hidden_field(:trip, :hotel_booking_id, :value => @hotel_booking.first.id) %>
+    <%= hidden_field(:trip, :vehicle_booking_id, :value => @vehicle_booking.first.id) %>
+    <%= text_field_tag 'trip[seats]' %>
+  </div>
+<% end %>

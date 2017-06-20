@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612195208) do
+ActiveRecord::Schema.define(version: 20170619180754) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -158,6 +158,15 @@ ActiveRecord::Schema.define(version: 20170612195208) do
     t.boolean  "tour_insurance_vat_applies",     default: true
   end
 
+  create_table "trips", force: :cascade do |t|
+    t.integer  "tour_booking_id"
+    t.integer  "hotel_booking_id"
+    t.integer  "vehicle_booking_id"
+    t.integer  "seats"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "vehical_bookings", force: :cascade do |t|
     t.integer  "vehical_id"
     t.date     "start_data"
@@ -169,6 +178,23 @@ ActiveRecord::Schema.define(version: 20170612195208) do
   end
 
   create_table "vehicals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "vehicle_type"
+    t.integer  "seats"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "vehicle_bookings", force: :cascade do |t|
+    t.integer  "vehicle_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "occupied_seats"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
     t.string   "name"
     t.string   "vehicle_type"
     t.integer  "seats"

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   #resources :tour_statuses
-  root to: "tours#index"
+  root to: "tours#index", as: :tour
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
